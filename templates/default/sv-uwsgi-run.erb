@@ -12,7 +12,11 @@ exec $UWSGI \<% if @options[:config_file] -%>
 --<%= @options[:config_type] %> <%= @options[:config_file] %><% else %>
 --env LC_ALL="en_US.UTF-8" \
 --env LANG="en_US.UTF-8" \
+<% if @options[:sock_file] -%>
+--socket <%= @options[:sock_file] %> \
+<% else -%>
 --socket <%= @options[:host] %>:<%= @options[:port] %> \
+<% end -%>
 --uid <%= @options[:uid] %> \
 --gid <%= @options[:gid] %> \
 --pidfile $PID \

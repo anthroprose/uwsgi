@@ -27,6 +27,7 @@ Definitions
 -  `:config_type`      - configuration file type, default to `:ini`
 -  `:host`             - hostname to run uWSGI on, default to `"127.0.0.1"`
 -  `:port`             - port number to run uWSGI on, default to `8080`
+-  `:sock_file`        - path to UNIX socket file, if this is detected host and port are ignored
 -  `:worker_processes` - number of uWSGI workers, default to `2`, should probably be relative to the number of CPUs
 -  `:app`              - app to run on uwsgi, passed to --module parameted of uWSGI, default to `"main:app"`
 -  `:uid`              - user-id to run uwsgi under, default to `"www-data"`
