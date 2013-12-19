@@ -1,6 +1,6 @@
 #!/bin/sh
 
-UWSGI=/usr/local/bin/uwsgi
+UWSGI=<%= node['uwsgi']['bin'] %>
 ROOT=<%= @options[:home_path] %>
 PID=<%= @options[:pid_path] %>
 
@@ -11,12 +11,9 @@ exec 2>&1
 exec $UWSGI \<% if @options[:config_file] -%>
 --<%= @options[:config_type] %> <%= @options[:config_file] %><% else %>
 --env LC_ALL="en_US.UTF-8" \
---env LANG="en_US.UTF-8" \
-<% if @options[:sock_file] -%>
---socket <%= @options[:sock_file] %> \
-<% else -%>
---socket <%= @options[:host] %>:<%= @options[:port] %> \
-<% end -%>
+--env LANG="en_US.UTF-8" \<% if @options[:sock_file] -%>
+--socket <%= @options[:sock_file] %> \<% else -%>
+--socket <%= @options[:host] %>:<%= @options[:port] %> \<% end -%>
 --uid <%= @options[:uid] %> \
 --gid <%= @options[:gid] %> \
 --pidfile $PID \

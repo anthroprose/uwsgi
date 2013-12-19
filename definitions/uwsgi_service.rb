@@ -3,6 +3,7 @@ define :uwsgi_service,
     :pid_path => "/var/run/uwsgi-app.pid",
     :host => "127.0.0.1",
     :port => 8080,
+    :sock_file => nil,
     :worker_processes => 2,
     :app => "main:app",
     :uid => "www-data",
@@ -29,6 +30,7 @@ define :uwsgi_service,
   pid_path = params[:pid_path]
   host = params[:host]
   port = params[:port]
+  sock_file = params[:sock_file]
   worker_processes = params[:worker_processes]
   app = params[:app]
   uid = params[:uid]
@@ -59,6 +61,7 @@ define :uwsgi_service,
       :pid_path => pid_path,
       :host => host,
       :port => port,
+      :sock_file => sock_file,
       :worker_processes => worker_processes,
       :app => app,
       :uid => uid,
